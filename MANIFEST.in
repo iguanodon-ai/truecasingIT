@@ -1,0 +1,2 @@
+include truecasingIT/wordforms.txt
+include truecasingIT/punct.txt
