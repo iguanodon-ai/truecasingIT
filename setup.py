@@ -5,7 +5,7 @@ with open("README.md", "r", encoding = "utf-8") as fh:
 
 setuptools.setup(
 	name="truecasingIT",
-	version="1.0.0",
+	version="1.0.1",
 	author="Simon Hengchen",
 	author_email="simon@iguanodon.ai",
 	description="This package allows you to truecase Italian.",

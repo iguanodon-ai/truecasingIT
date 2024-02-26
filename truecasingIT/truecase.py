@@ -7,9 +7,9 @@ class Truecaser:
         wordforms_path = os.path.join(os.path.dirname(__file__), "wordforms.txt")
         punct_path = os.path.join(os.path.dirname(__file__), "punct.txt")
 
-        with open(wordforms_path) as f:
+        with open(wordforms_path, encoding='utf-8') as f:
             self.surface_forms = f.read().splitlines()
-        with open(punct_path) as f:
+        with open(punct_path, encoding='utf-8') as f:
             self.sent_pos = f.read().splitlines()
 
 
