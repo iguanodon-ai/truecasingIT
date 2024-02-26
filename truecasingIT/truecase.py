@@ -24,7 +24,7 @@ class Truecaser:
             str: The processed text with truecased words.
         """
         
-        for exc in [("Â", "'"), ("Ã", "à")]:
+        for exc in [(" Â¿ ", " '"), ("Â¿ ", "' "), ("Â¿", "'"), ("Â", "'"), ("Ã", "à")]: # kohesio issues
             text = text.replace(exc[0], exc[1])
         sentences = re.split(r'(?<=[.!?])\s*', text)
         truecased_sentences = []
@@ -53,7 +53,21 @@ class Truecaser:
                 # Add back the punctuation mark, if any
                 # one exception if the word is in single quotes
                 if punctuation == "''":
-                    truecased_word = f"'{truecased_word}'"
+                    if truecased_word.lower() == "dellintegrazione":
+                        truecased_word = "dell'integrazione"
+                    else:
+                        truecased_word = f"'{truecased_word}'"
+
+                elif punctuation == "'":
+                    if truecased_word.lower().startswith("l"):
+                        if i == 0:
+                            truecased_word = f"L'{truecased_word[1:]}"
+                        else:
+                            truecased_word = f"l'{truecased_word[1:]}"
+                    if truecased_word.lower().startswith("dell"):
+                            truecased_word = f"dell'{truecased_word[4:]}"
+                            if truecased_word == "dell'a":
+                                truecased_word = "della"
                 else: 
                     truecased_word += punctuation
 
@@ -61,6 +75,6 @@ class Truecaser:
                 truecased_words.append(truecased_word)
             truecased_sentence = ' '.join(truecased_words)
             truecased_sentences.append(truecased_sentence)
-        
+            
         final = ' '.join(truecased_sentences).replace("l' ", "l'")
         return final
