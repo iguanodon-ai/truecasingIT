@@ -68,6 +68,11 @@ class Truecaser:
                             truecased_word = f"dell'{truecased_word[4:]}"
                             if truecased_word == "dell'a":
                                 truecased_word = "della"
+                    if truecased_word.lower().startswith("un"):
+                            if i == 0:
+                                truecased_word = f"Un'{truecased_word[2:]}"
+                            else:
+                                truecased_word = f"un'{truecased_word[2:]}"
                 else: 
                     truecased_word += punctuation
 
